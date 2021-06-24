@@ -1,0 +1,7 @@
+# Nixos
+
+Run from the root directory of the `qmk_firmware` repository:
+
+```
+nix-shell
+```
