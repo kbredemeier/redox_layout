@@ -1,7 +1,44 @@
-# Nixos
+= Redox Keyboard
 
-Run from the root directory of the `qmk_firmware` repository:
+This repository contains information for configuring, compiling and flashing the QMK firmware for the Redox Keyboard.
 
-```
-nix-shell
-```
+== Setup
+
+. Clone this repository and change into the root directory.
+. Initialize the submodules with `git submodule init`.
+. Link the keymap with `ln -s $(pwd)/kbredemeier $(pwd)/qmk_firmware/keyboards/redox/keymaps/kbredemeier`.
+
+=== Nix/Nixos
+
+. Make sure you are a member of the `dialout`.
+  This is required for writing to the serial port.
+. Run `nix-shell` from the `qmk_firmware` directory.
+  This sets up the build environment for the firmware and puts the `qmk` command into the `PATH`.
+. (Only on the first time) Run `qmk setup`.
+. (Only on the first time) Run `qmk config user.keyboard=redox/rev1`.
+. (Only on the first time) Run `qmk config user.keymap=kbredemeier`.
+
+== Importing a configuration export
+
+The https://config.qmk.fm/#/redox/rev1/LAYOUT[QMK configurator] allows to export the keymap as a json file. 
+
+. Downloaded the json export from the configurator.
+. Copy the file to `qmk_firmware/keyboards/redox/keymaps/kbredemeier/qmk_configurator_export.json`.
+. Change the directory to `qmk_firmware/keyboards/redox/keymaps/kbredemeier`.
+. Run `qmk json2c -o keymap.c qmk_configurator_export.json`.
+
+== Compile and flash the firmware
+
+. Change the directory to `qmk_firmware/keyboards/redox/keymaps/kbredemeier`.
+. Compile the firmware with `qmk compile`.
+. Flash the firmware with `qmk flash`.
+. Hit both `Shift` keys an `B` on the keyboard.
+  Alternatively press the reset button on the bottom of the keyboard.
+. Repeat the last two steps with the other half of the keyboard plugged in.
+
+== Links
+
+* https://docs.qmk.fm/[Docs] - The documentation for the QMK Firmware.
+* https://github.com/qmk/qmk_firmware[Git] - The git repository for the firmware.
+* https://config.qmk.fm/#/redox/rev1/LAYOUT[Configurator] - A keymap configurator.
+* https://docs.qmk.fm/#/keycodes?id=basic-keycodes[Keycodes] - A list of keycodes for the keymap configurator.
