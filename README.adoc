@@ -23,13 +23,13 @@ This repository contains information for configuring, compiling and flashing the
 The https://config.qmk.fm/#/redox/rev1/LAYOUT[QMK configurator] allows to export the keymap as a json file. 
 
 . Downloaded the json export from the configurator.
-. Copy the file to `qmk_firmware/keyboards/redox/keymaps/kbredemeier/qmk_configurator_export.json`.
-. Change the directory to `qmk_firmware/keyboards/redox/keymaps/kbredemeier`.
-. Run `qmk json2c -o keymap.c qmk_configurator_export.json`.
+. Copy the file to `kbredemeier/qmk_configurator_export.json`.
+. Change the directory to `qmk_firmware`.
+. Run `qmk json2c -o ../kbredemeier/keymap.c ../kbredemeier/qmk_configurator_export.json`.
 
 == Compile and flash the firmware
 
-. Change the directory to `qmk_firmware/keyboards/redox/keymaps/kbredemeier`.
+. Change the directory to `qmk_firmware`.
 . Compile the firmware with `qmk compile`.
 . Flash the firmware with `qmk flash`.
 . Hit both `Shift` keys an `B` on the keyboard.
